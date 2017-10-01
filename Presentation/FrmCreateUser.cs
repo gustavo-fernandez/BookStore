@@ -1,14 +1,20 @@
-﻿using DataAccess.Context;
+﻿using BusinessLogicApi.Business;
+using BusinessLogicApi.DTO;
+using BusinessLogicImpl.BusinessImpl;
+using DataAccess.Context;
 using DataAccess.Model;
 using System;
 using System.Windows.Forms;
 
 namespace BookStoreApp
 {
-    public partial class FrmUser : Form
+    public partial class FrmCreateUser : Form
     {
-        public FrmUser()
+        private IUserBusiness userBusiness;
+
+        public FrmCreateUser()
         {
+            userBusiness = new UserBusiness();
             InitializeComponent();
         }
 
@@ -19,17 +25,12 @@ namespace BookStoreApp
 
             try
             {
-                using (BookStoreContext context = new BookStoreContext())
+                CreatedUser createdUser = userBusiness.Create(new NewUser()
                 {
-                    User newUser = context.Users.Add(new User()
-                    {
-                        Username = username,
-                        Password = password,
-                        CreatedDate = DateTime.Now
-                    });
-                    context.SaveChanges();
-                    MessageBox.Show($"Usuario creado con Id: {newUser.Id}");
-                }
+                    Username = username,
+                    Password = password
+                });
+                MessageBox.Show($"Usuario creado con Id: {createdUser.Id}");
             }
             catch (Exception ex)
             {
@@ -39,7 +40,7 @@ namespace BookStoreApp
 
         private void FrmUser_Load(object sender, EventArgs e)
         {
-            
         }
+
     }
 }

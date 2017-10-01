@@ -1,6 +1,6 @@
 ﻿namespace BookStoreApp
 {
-    partial class FrmUser
+    partial class FrmCreateUser
     {
         /// <summary>
         /// Required designer variable.
@@ -37,7 +37,7 @@
             // 
             // btnCrear
             // 
-            this.btnCrear.Location = new System.Drawing.Point(97, 60);
+            this.btnCrear.Location = new System.Drawing.Point(91, 60);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.Size = new System.Drawing.Size(75, 23);
             this.btnCrear.TabIndex = 0;
@@ -68,28 +68,28 @@
             this.txtPassword.Location = new System.Drawing.Point(72, 34);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(100, 20);
+            this.txtPassword.Size = new System.Drawing.Size(173, 20);
             this.txtPassword.TabIndex = 2;
             // 
             // txtUsername
             // 
             this.txtUsername.Location = new System.Drawing.Point(72, 10);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(100, 20);
+            this.txtUsername.Size = new System.Drawing.Size(173, 20);
             this.txtUsername.TabIndex = 2;
             // 
-            // FrmUser
+            // FrmCreateUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(189, 97);
+            this.ClientSize = new System.Drawing.Size(257, 97);
             this.Controls.Add(this.txtUsername);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.btnCrear);
-            this.Name = "FrmUser";
-            this.Text = "Form1";
+            this.Name = "FrmCreateUser";
+            this.Text = "Create User";
             this.Load += new System.EventHandler(this.FrmUser_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
