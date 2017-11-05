@@ -1,5 +1,4 @@
 ﻿using BookStoreApp;
-using BusinessLogicImpl.Mappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +15,6 @@ namespace Presentation
         [STAThread]
         static void Main()
         {
-            MapperConfig.Initialize();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FrmLogin());

@@ -9,12 +9,15 @@ using DataAccess.Context;
 using DataAccess.Model;
 using Common.Cryptography;
 using System.Data.Entity;
+using BusinessLogicImpl.Mapper;
 using AutoMapper;
 
 namespace BusinessLogicImpl.BusinessImpl
 {
     public class UserBusiness : IUserBusiness
     {
+        private IMapper Mapper = MapperConfig.MapperInstance;
+
         public CreatedUser Create(NewUser newUser)
         {
             using (BookStoreContext context = new BookStoreContext())
