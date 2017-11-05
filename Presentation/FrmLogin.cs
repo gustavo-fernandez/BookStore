@@ -36,5 +36,10 @@ namespace Presentation
                 MessageBox.Show($"Bienvenido {user.Username}!");
             }
         }
+
+        private void FrmLogin_Load(object sender, EventArgs e)
+        {
+            List<CreatedUser> list = userBusiness.FindAll();
+        }
     }
 }

@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using BusinessLogicApi.DTO;
 using DataAccess.Context;
 using DataAccess.Model;
-using BusinessLogicImpl.Mapper;
 using Common.Cryptography;
 using System.Data.Entity;
+using AutoMapper;
 
 namespace BusinessLogicImpl.BusinessImpl
 {
@@ -28,7 +28,7 @@ namespace BusinessLogicImpl.BusinessImpl
                 };
                 User createdUser = context.Users.Add(user);
                 context.SaveChanges();
-                return UserMapper.mapToCreatedUser(createdUser);
+                return Mapper.Map<CreatedUser>(createdUser);
             }
         }
 
@@ -37,7 +37,7 @@ namespace BusinessLogicImpl.BusinessImpl
             using (BookStoreContext context = new BookStoreContext())
             {
                 User user = context.Users.Where(x => x.Username.Equals(username)).First();
-                return UserMapper.mapToCreatedUser(user);
+                return Mapper.Map<CreatedUser>(user);
             }
         }
 
@@ -45,7 +45,7 @@ namespace BusinessLogicImpl.BusinessImpl
         {
             using (BookStoreContext context = new BookStoreContext())
             {
-                return context.Users.Select(UserMapper.mapToCreatedUser).ToList();
+                return context.Users.ToList().Select(Mapper.Map<CreatedUser>).ToList();
             }
         }
 
@@ -61,7 +61,7 @@ namespace BusinessLogicImpl.BusinessImpl
                 string hmacLogin = SHA256Utils.ComputeHMAC(password, user.Salt);
                 if (hmacLogin.Equals(user.Password))
                 {
-                    return UserMapper.mapToCreatedUser(user);
+                    return Mapper.Map<CreatedUser>(user);
                 }
                 return null;
             }
@@ -91,7 +91,7 @@ namespace BusinessLogicImpl.BusinessImpl
                 user.ModifiedDate = DateTime.Now;
                 context.Entry(user).State = EntityState.Modified;
                 context.SaveChanges();
-                return UserMapper.mapToCreatedUser(user);
+                return Mapper.Map<CreatedUser>(user);
             }
         }
     }
