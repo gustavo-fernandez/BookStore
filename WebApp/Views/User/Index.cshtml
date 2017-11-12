@@ -1,0 +1,70 @@
+﻿@{
+    ViewBag.Title = "Manage Users";
+}
+
+<h2>Manage Users</h2>
+
+@Html.Partial("_AddUser")
+
+<div id="tableContainer">
+    @Html.Action("UserTable")
+</div>
+
+@section scripts {
+<script>
+
+    $(function () {
+        //updateTable()
+
+        $('#btnAddUser').click(function () {
+            var username = $('#username').val();
+            var password = $('#password').val();
+            var $btn = $(this).button('loading');
+            createNewUser(username, password, function () {
+                updateTable();
+                $btn.button('reset');
+            });
+            $('#username').val('');
+            $('#password').val('');
+        });
+    });
+
+    function listUsers() {
+        $.get("/api/users", function (users) {
+            users.forEach(function (user) {
+                console.log(`User: ${user.Id}, ${user.Username}`);
+            });
+        });
+    }
+    function NewUser() {
+        this.Username = '';
+        this.Password = '';
+        return this;
+    }
+
+    function createNewUser(username, password, onUserAdded) {
+        var newUser = new NewUser()
+        newUser.Username = username;
+        newUser.Password = password;
+        $.ajax({
+            url: '/api/users',
+            type: 'POST',
+            data: JSON.stringify(newUser),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (result) {
+                onUserAdded();
+            },
+            error: function () {
+                alert('Error');
+            }
+        });
+    }
+
+    function updateTable() {
+        $.get('/User/UserTable', function (htmlData) {
+            $('#tableContainer').html(htmlData);
+        });
+    }
+</script>
+}

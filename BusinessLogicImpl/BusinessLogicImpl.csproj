@@ -53,7 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Mappers\MapperConfig.cs" />
+    <Compile Include="Mapper\MapperConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BusinessImpl\UserBusiness.cs" />
   </ItemGroup>
